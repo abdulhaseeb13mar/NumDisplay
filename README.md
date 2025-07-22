@@ -53,35 +53,6 @@ function App() {
 ### Wrap your entire app (Recommended)
 
 ```tsx
-// For Next.js App Router - in your layout.tsx
-import { NumProvider } from "numdisplay";
-
-export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      <body>
-        <NumProvider delayDuration={300}>{children}</NumProvider>
-      </body>
-    </html>
-  );
-}
-```
-
-```tsx
-// For Next.js Pages Router - in your _app.tsx
-import { NumProvider } from "numdisplay";
-
-export default function App({ Component, pageProps }) {
-  return (
-    <NumProvider>
-      <Component {...pageProps} />
-    </NumProvider>
-  );
-}
-```
-
-```tsx
-// For Regular React Apps - in your main App.tsx
 import { NumProvider } from "numdisplay";
 
 function App() {
