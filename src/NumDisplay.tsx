@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import TooltipComp from "./components/TooltipComp";
 import { CoreNumDisplayProps, NumDisplayProps } from "./types";
