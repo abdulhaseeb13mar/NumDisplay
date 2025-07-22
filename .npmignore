@@ -1,0 +1,17 @@
+dist/
+node_modules/
+*.log
+.DS_Store
+coverage/
+.nyc_output/
+lib/
+build/
+src/**/*.test.ts
+src/**/*.test.tsx
+src/**/*.spec.ts
+src/**/*.spec.tsx
+rollup.config.js
+jest.config.js
+.eslintrc.js
+tsconfig.json
+src/setupTests.ts
