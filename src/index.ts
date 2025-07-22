@@ -1,7 +1,3 @@
 export { CoreNumDisplay, NumDisplay } from "./NumDisplay";
-export { NumProvider } from "./components/NumProvider";
-export type {
-  CoreNumDisplayProps,
-  NumDisplayProps,
-  TooltipCompProps,
-} from "./types";
+export { default } from "./NumDisplay";
+export type { CoreNumDisplayProps, NumDisplayProps } from "./types";

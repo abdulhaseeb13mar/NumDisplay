@@ -5,7 +5,7 @@ Your NumDisplay component package has been successfully prepared and is ready fo
 ## 📦 Package Summary
 
 - **Name**: `numdisplay`
-- **Version**: `1.0.0`
+- **Version**: `2.0.0`
 - **Repository**: [github.com/abdulhaseeb13mar/NumDisplay](https://github.com/abdulhaseeb13mar/NumDisplay)
 - **Built**: ✅ Successfully compiled to `dist/`
 - **Linted**: ✅ Passed ESLint checks
@@ -17,7 +17,6 @@ Your NumDisplay component package has been successfully prepared and is ready fo
 
 - `NumDisplay` - Main component with prefix/suffix support
 - `CoreNumDisplay` - Core number formatting component
-- `TooltipProvider` - Tooltip context provider
 
 ### Features
 
@@ -25,9 +24,9 @@ Your NumDisplay component package has been successfully prepared and is ready fo
 - 💰 Support for dollar, percentage, and token types
 - 🔢 Special handling for very small numbers with subscript notation
 - 🎨 Customizable styling with Tailwind CSS classes
-- 📱 Built-in tooltip support
 - ⚡ TypeScript support with full type definitions
 - 🎯 React 18+ compatible
+- 🪶 Lightweight with no external UI dependencies
 
 ### Package Structure
 
@@ -79,15 +78,15 @@ npm install @haseeb/numdisplay
 ```
 
 ```tsx
-import { NumDisplay, TooltipProvider } from "@haseeb/numdisplay";
+import NumDisplay from "numdisplay";
 
 function App() {
   return (
-    <TooltipProvider>
+    <div>
       <NumDisplay value="1234.56" type="dollar" />
       <NumDisplay value="15.75" type="percentage" />
       <NumDisplay value="0.00001234" type="token" />
-    </TooltipProvider>
+    </div>
   );
 }
 ```
@@ -95,10 +94,10 @@ function App() {
 ## 🎯 Key Benefits
 
 - **Smart Formatting**: Automatically adjusts decimal places based on number size
-- **Accessibility**: Built with Radix UI primitives
 - **Performance**: Tree-shakeable and optimized bundle
 - **Developer Experience**: Full TypeScript support with IntelliSense
 - **Flexibility**: Highly customizable with props and CSS classes
+- **Lightweight**: No external UI dependencies, focused purely on number display
 
 ## 📖 Documentation
 

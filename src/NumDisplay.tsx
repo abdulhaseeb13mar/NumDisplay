@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import TooltipComp from "./components/TooltipComp";
 import { CoreNumDisplayProps, NumDisplayProps } from "./types";
 import { cn } from "./utils";
 
@@ -154,15 +153,11 @@ const getDisplayValue = (
   showPlusSign: boolean = false
 ) => finalDecoration(formatValue(value, decimals), type, showPlusSign);
 
-const CoreNumDisplay: React.FC<
-  CoreNumDisplayProps & { tooltipValue?: string }
-> = ({
+const CoreNumDisplay: React.FC<CoreNumDisplayProps> = ({
   type,
   value,
   decimals,
   className,
-  disableTooltip = false,
-  tooltipValue = "",
   showPlusSign = false,
 }) => {
   const parsed = Number(value);
@@ -221,39 +216,23 @@ const CoreNumDisplay: React.FC<
     }
   }
 
-  return (
-    <TooltipComp
-      displayValue={displayValue}
-      fullValue={tooltipValue !== "" ? tooltipValue : exactValue}
-      className={className}
-      disableTooltip={disableTooltip}
-    />
-  );
+  return <span className={className}>{displayValue}</span>;
 };
 
-const NumDisplay: React.FC<NumDisplayProps & { tooltipValue?: string }> = ({
+const NumDisplay: React.FC<NumDisplayProps> = ({
   suffix,
   prefix,
   prefixClassName,
   suffixClassName,
   value,
-  disableTooltip,
-  tooltipValue = "",
   ...numDisplayProps
 }) => {
-  const isZero = Number(value) === 0;
   return (
     <div className="flex items-center gap-1">
       {prefix && (
         <span className={cn("text-primary", prefixClassName)}>{prefix}</span>
       )}
-      <CoreNumDisplay
-        {...numDisplayProps}
-        value={value}
-        disableTooltip={isZero ? true : disableTooltip}
-        // Pass tooltipValue if provided, else fallback to value
-        tooltipValue={tooltipValue}
-      />
+      <CoreNumDisplay {...numDisplayProps} value={value} />
       {suffix && (
         <span className={cn("text-primary", suffixClassName)}>{suffix}</span>
       )}

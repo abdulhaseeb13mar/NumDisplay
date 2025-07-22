@@ -1,16 +1,15 @@
 # NumDisplay Package
 
-A flexible React component for displaying numbers with smart formatting, tooltips, and type-specific styling.
+A flexible React component for displaying numbers with smart formatting and type-specific styling.
 
 ## Features
 
 - **Smart Number Formatting**: Automatically formats numbers based on their magnitude
 - **Multiple Types**: Support for dollar amounts, percentages, and token values
 - **Very Small Number Handling**: Special formatting for very small decimal numbers with subscript notation
-- **Tooltips**: Built-in tooltip support to show full precision values
 - **Customizable**: Flexible styling with className support
 - **TypeScript**: Full TypeScript support with comprehensive type definitions
-- **Accessible**: Built with accessibility in mind using Radix UI primitives
+- **Lightweight**: No external UI dependencies, focused purely on number display
 
 ## Installation
 
@@ -33,52 +32,15 @@ npm install react react-dom
 ## Basic Usage
 
 ```tsx
-import { NumDisplay, NumProvider } from "numdisplay";
+import NumDisplay from "numdisplay";
 
 function App() {
   return (
-    <NumProvider>
+    <div>
       <NumDisplay value="1234.56" type="dollar" />
       <NumDisplay value="15.75" type="percentage" />
       <NumDisplay value="0.00001234" type="token" />
-    </NumProvider>
-  );
-}
-```
-
-## Setup
-
-**Important:** You must wrap your React app (or the part of your app that uses NumDisplay) with the `NumProvider` component for the tooltips to work properly.
-
-### Wrap your entire app (Recommended)
-
-```tsx
-import { NumProvider } from "numdisplay";
-
-function App() {
-  return (
-    <NumProvider>
-      {/* Your entire app content */}
-      <YourAppContent />
-    </NumProvider>
-  );
-}
-```
-
-### Wrap specific components
-
-You can also wrap specific components instead of the entire app:
-
-```tsx
-import { NumDisplay, NumProvider } from "numdisplay";
-
-function MyComponent() {
-  return (
-    <NumProvider>
-      <NumDisplay value="1234.56" type="dollar" />
-      <NumDisplay value="15.75" type="percentage" />
-      <NumDisplay value="0.00001234" type="token" />
-    </NumProvider>
+    </div>
   );
 }
 ```
@@ -93,13 +55,11 @@ function MyComponent() {
 | `type`            | `"dollar" \| "percentage" \| "token"` | The type of number being displayed        | -           |
 | `decimals`        | `number`                              | Fixed number of decimal places (optional) | `undefined` |
 | `className`       | `string`                              | CSS class for styling                     | -           |
-| `disableTooltip`  | `boolean`                             | Disable the tooltip                       | `false`     |
 | `showPlusSign`    | `boolean`                             | Show plus sign for positive numbers       | `false`     |
 | `prefix`          | `string \| ReactNode`                 | Content to display before the number      | -           |
 | `suffix`          | `string \| ReactNode`                 | Content to display after the number       | -           |
 | `prefixClassName` | `string`                              | CSS class for prefix styling              | -           |
 | `suffixClassName` | `string`                              | CSS class for suffix styling              | -           |
-| `tooltipValue`    | `string`                              | Custom tooltip value                      | -           |
 
 ### CoreNumDisplay Props
 
@@ -189,19 +149,12 @@ For very small numbers (< 0.01), the component uses a special notation:
 // Where ₄ indicates 4 omitted zeros after the decimal point
 ```
 
-## Tooltip Behavior
-
-- Tooltips are automatically enabled and show the full precision value
-- Tooltips are automatically disabled for zero values
-- Can be manually disabled with `disableTooltip={true}`
-- Custom tooltip values can be provided with `tooltipValue`
-
 ## TypeScript Support
 
 The package includes comprehensive TypeScript definitions:
 
 ```tsx
-import { NumDisplayProps, CoreNumDisplayProps } from "numdisplay";
+import NumDisplay, { NumDisplayProps, CoreNumDisplayProps } from "numdisplay";
 
 const MyComponent: React.FC<{ config: NumDisplayProps }> = ({ config }) => {
   return <NumDisplay {...config} />;
@@ -215,40 +168,6 @@ The component uses Tailwind CSS classes and can be styled with:
 - `className` for the main number display
 - `prefixClassName` and `suffixClassName` for prefix/suffix styling
 - The component is designed to work well with Tailwind CSS but doesn't require it
-
-## Troubleshooting
-
-### Error: "Tooltip must be used within TooltipProvider"
-
-This error occurs when the `NumDisplay` component is used without being wrapped in `NumProvider`. To fix this:
-
-1. Import `NumProvider` from the package:
-
-   ```tsx
-   import { NumDisplay, NumProvider } from "numdisplay";
-   ```
-
-2. Wrap your app or the component that uses `NumDisplay`:
-   ```tsx
-   <NumProvider>
-     <NumDisplay value="123" type="dollar" />
-   </NumProvider>
-   ```
-
-### Error: "createContext only works in Client Components" (Next.js)
-
-This error should not occur when using `NumProvider`. If you see this error, make sure you're using `NumProvider` (not `TooltipProvider`) and that it's properly imported:
-
-```tsx
-// ✅ Correct usage
-import { NumProvider } from "numdisplay";
-
-export default function Layout({ children }) {
-  return <NumProvider>{children}</NumProvider>;
-}
-```
-
-**Tip:** For best performance, wrap your entire app once at the root level rather than wrapping individual components.
 
 ## License
 

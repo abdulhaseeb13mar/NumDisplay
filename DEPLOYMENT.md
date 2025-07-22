@@ -116,7 +116,7 @@ Make sure your README.md is up to date with:
 ## Package Information
 
 - **Name**: `numdisplay`
-- **Current Version**: `1.0.0`
+- **Current Version**: `2.0.0`
 - **Main Export**: `dist/index.js`
 - **Module Export**: `dist/index.esm.js`
 - **Types**: `dist/index.d.ts`
@@ -130,7 +130,6 @@ Make sure your README.md is up to date with:
 
 ### Runtime Dependencies (Bundled)
 
-- `@radix-ui/react-tooltip`
 - `clsx`
 - `tailwind-merge`
 
