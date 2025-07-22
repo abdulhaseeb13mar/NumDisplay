@@ -1,6 +1,6 @@
 {
   "name": "numdisplay",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "A flexible React component for displaying numbers with smart formatting, tooltips, and type-specific styling",
   "type": "module",
   "main": "dist/index.js",
