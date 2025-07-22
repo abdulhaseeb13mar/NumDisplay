@@ -1,5 +1,5 @@
 export { CoreNumDisplay, NumDisplay } from "./NumDisplay";
-export { TooltipProvider } from "./components/tooltip";
+export { NumProvider } from "./components/NumProvider";
 export type {
   CoreNumDisplayProps,
   NumDisplayProps,
