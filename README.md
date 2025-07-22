@@ -88,7 +88,7 @@ Same as NumDisplay but without `prefix`, `suffix`, `prefixClassName`, and `suffi
 
 ```tsx
 <NumDisplay value="0.00001234" type="token" />
-// Displays: 0.12₄ (with subscript showing omitted zeros)
+// Displays: 0.₄12 (with subscript showing omitted zeros)
 ```
 
 ### With Prefix and Suffix
