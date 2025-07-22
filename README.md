@@ -33,51 +33,81 @@ npm install react react-dom
 ## Basic Usage
 
 ```tsx
-import { NumDisplay, TooltipProvider } from "numdisplay";
+import { NumDisplay, NumProvider } from "numdisplay";
 
 function App() {
   return (
-    <TooltipProvider>
+    <NumProvider>
       <NumDisplay value="1234.56" type="dollar" />
       <NumDisplay value="15.75" type="percentage" />
       <NumDisplay value="0.00001234" type="token" />
-    </TooltipProvider>
+    </NumProvider>
   );
 }
 ```
 
 ## Setup
 
-**Important:** You must wrap your React app (or the part of your app that uses NumDisplay) with the `TooltipProvider` component for the tooltips to work properly.
+**Important:** You must wrap your React app (or the part of your app that uses NumDisplay) with the `NumProvider` component for the tooltips to work properly.
 
-### Option 1: Wrap your entire app (Recommended)
+### Wrap your entire app (Recommended)
 
 ```tsx
-// In your main App.tsx or _app.tsx (for Next.js)
-import { TooltipProvider } from "numdisplay";
+// For Next.js App Router - in your layout.tsx
+import { NumProvider } from "numdisplay";
 
-function App() {
+export default function RootLayout({ children }) {
   return (
-    <TooltipProvider>
-      {/* Your entire app content */}
-      <YourAppContent />
-    </TooltipProvider>
+    <html lang="en">
+      <body>
+        <NumProvider delayDuration={300}>{children}</NumProvider>
+      </body>
+    </html>
   );
 }
 ```
 
-### Option 2: Wrap specific components
+```tsx
+// For Next.js Pages Router - in your _app.tsx
+import { NumProvider } from "numdisplay";
+
+export default function App({ Component, pageProps }) {
+  return (
+    <NumProvider>
+      <Component {...pageProps} />
+    </NumProvider>
+  );
+}
+```
 
 ```tsx
-import { NumDisplay, TooltipProvider } from "numdisplay";
+// For Regular React Apps - in your main App.tsx
+import { NumProvider } from "numdisplay";
+
+function App() {
+  return (
+    <NumProvider>
+      {/* Your entire app content */}
+      <YourAppContent />
+    </NumProvider>
+  );
+}
+```
+
+### Wrap specific components
+
+You can also wrap specific components instead of the entire app:
+
+```tsx
+import { NumDisplay, NumProvider } from "numdisplay";
 
 function MyComponent() {
   return (
-    <TooltipProvider>
+    <NumProvider>
       <NumDisplay value="1234.56" type="dollar" />
       <NumDisplay value="15.75" type="percentage" />
       <NumDisplay value="0.00001234" type="token" />
-    </TooltipProvider>
+    </NumProvider>
   );
 }
 ```
@@ -219,23 +249,35 @@ The component uses Tailwind CSS classes and can be styled with:
 
 ### Error: "Tooltip must be used within TooltipProvider"
 
-This error occurs when the `NumDisplay` component is used without being wrapped in a `TooltipProvider`. To fix this:
+This error occurs when the `NumDisplay` component is used without being wrapped in `NumProvider`. To fix this:
 
-1. Import `TooltipProvider` from the package:
+1. Import `NumProvider` from the package:
 
    ```tsx
-   import { NumDisplay, TooltipProvider } from "numdisplay";
+   import { NumDisplay, NumProvider } from "numdisplay";
    ```
 
 2. Wrap your app or the component that uses `NumDisplay`:
-
    ```tsx
-   <TooltipProvider>
+   <NumProvider>
      <NumDisplay value="123" type="dollar" />
-   </TooltipProvider>
+   </NumProvider>
    ```
 
-3. For best performance, wrap your entire app once at the root level rather than wrapping individual components.
+### Error: "createContext only works in Client Components" (Next.js)
+
+This error should not occur when using `NumProvider`. If you see this error, make sure you're using `NumProvider` (not `TooltipProvider`) and that it's properly imported:
+
+```tsx
+// ✅ Correct usage
+import { NumProvider } from "numdisplay";
+
+export default function Layout({ children }) {
+  return <NumProvider>{children}</NumProvider>;
+}
+```
+
+**Tip:** For best performance, wrap your entire app once at the root level rather than wrapping individual components.
 
 ## License
 
