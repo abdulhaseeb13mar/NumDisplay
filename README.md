@@ -46,6 +46,42 @@ function App() {
 }
 ```
 
+## Setup
+
+**Important:** You must wrap your React app (or the part of your app that uses NumDisplay) with the `TooltipProvider` component for the tooltips to work properly.
+
+### Option 1: Wrap your entire app (Recommended)
+
+```tsx
+// In your main App.tsx or _app.tsx (for Next.js)
+import { TooltipProvider } from "numdisplay";
+
+function App() {
+  return (
+    <TooltipProvider>
+      {/* Your entire app content */}
+      <YourAppContent />
+    </TooltipProvider>
+  );
+}
+```
+
+### Option 2: Wrap specific components
+
+```tsx
+import { NumDisplay, TooltipProvider } from "numdisplay";
+
+function MyComponent() {
+  return (
+    <TooltipProvider>
+      <NumDisplay value="1234.56" type="dollar" />
+      <NumDisplay value="15.75" type="percentage" />
+      <NumDisplay value="0.00001234" type="token" />
+    </TooltipProvider>
+  );
+}
+```
+
 ## API Reference
 
 ### NumDisplay Props
@@ -178,6 +214,28 @@ The component uses Tailwind CSS classes and can be styled with:
 - `className` for the main number display
 - `prefixClassName` and `suffixClassName` for prefix/suffix styling
 - The component is designed to work well with Tailwind CSS but doesn't require it
+
+## Troubleshooting
+
+### Error: "Tooltip must be used within TooltipProvider"
+
+This error occurs when the `NumDisplay` component is used without being wrapped in a `TooltipProvider`. To fix this:
+
+1. Import `TooltipProvider` from the package:
+
+   ```tsx
+   import { NumDisplay, TooltipProvider } from "numdisplay";
+   ```
+
+2. Wrap your app or the component that uses `NumDisplay`:
+
+   ```tsx
+   <TooltipProvider>
+     <NumDisplay value="123" type="dollar" />
+   </TooltipProvider>
+   ```
+
+3. For best performance, wrap your entire app once at the root level rather than wrapping individual components.
 
 ## License
 
